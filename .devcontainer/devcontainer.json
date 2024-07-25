@@ -1,0 +1,56 @@
+{
+  "name": "DAM Dev IoT",
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/mongosh-homebrew:1": {},
+    "ghcr.io/devcontainers-contrib/features/netdata:1": {},
+    "ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {},
+    "ghcr.io/devcontainers-contrib/features/apt-packages:1": {},
+    "ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {},
+    "ghcr.io/devcontainers-contrib/features/curl-apt-get:1": {},
+    "ghcr.io/devcontainers-contrib/features/fkill:2": {},
+    "ghcr.io/devcontainers-contrib/features/gitsign-credential-cache:1": {},
+    "ghcr.io/devcontainers-contrib/features/http-server:1": {},
+    "ghcr.io/jungaretti/features/make:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "grafana.grafana",
+        "ms-vscode-remote.remote-containers",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "node-red.node-red",
+        "mongodb.mongodb-vscode",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "sqltools.connections": [{
+              "name": "TimescaleDbInstance",
+              "server": "",
+              "driver": "",
+              "port": 3306,
+              "username": "root",
+              "askForPassword": false,
+              "password": "",
+              "connectionTimeout": 15,
+              "mysqlOptions": {
+                  "authProtocol": "default"
+              }
+         }]
+      }
+    }
+  },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "docker docker-compose up -d"
+}
