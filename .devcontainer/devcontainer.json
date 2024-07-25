@@ -28,23 +28,38 @@
         "node-red.node-red",
         "mongodb.mongodb-vscode",
         "mtxr.sqltools",
-        "mtxr.sqltools-driver-pg"
+        "mtxr.sqltools-driver-pg",
+        "wjsvec.vscode-tdengine"
       ],
       "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
         "sqltools.connections": [
           {
-            "name": "TimescaleDbInstance",
-            "server": "",
-            "driver": "",
-            "port": 3306,
-            "username": "root",
-            "askForPassword": false,
-            "password": "",
-            "connectionTimeout": 15,
-            "mysqlOptions": {
-              "authProtocol": "default"
-            }
+            "name": "TimescaleDB",
+            "server": "timescaledb",
+            "driver": "PostgreSQL",
+            "port": 5432,
+            "username": "postgres",
+            "password": "pwddamdev",
+            "database": "postgres"
+          }
+        ],
+        "mongodb.connections": [
+          {
+            "name": "MongoDB",
+            "host": "mongodb",
+            "port": 27017,
+            "connectionString": "mongodb://admin:pwddamdev@mongodb:27017",
+            "authenticationDatabase": "admin"
+          }
+        ],
+        "tdengine.connections": [
+          {
+            "name": "TDengine",
+            "host": "tdengine",
+            "port": 6030,
+            "user": "root",
+            "password": "pwddamdev"
           }
         ]
       }
@@ -59,7 +74,7 @@
   "service": "devcontainer",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "shutdownAction": "stopCompose",
-  "postCreateCommand": "docker docker-compose up -d",
+  //"postCreateCommand": "docker-compose -f docker-compose.yml -f docker-compose.lowcodeetl.yml -f docker-compose.timescaledb.yml -f docker-compose.tdengine.yml -f docker-compose.mongodb.yml -f docker-compose.ekuiperetl.yml up -d",
   "forwardPorts": [
     3000,
     4222,
@@ -81,7 +96,9 @@
     6039,
     6040,
     6041,
-    6042
+    6042,
+    8080,
+    19999
   ],
   "portsAttributes": {
     "3000": {

@@ -3,7 +3,9 @@ name: damiotdev
 services:  
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
+    #build:
+    #  context: ../services/grafana
+    #  dockerfile: Dockerfile
     ports:
       - "3000:3000"
     restart: unless-stopped
@@ -17,6 +19,10 @@ services:
       GF_ENABLE_GZIP: true
       GF_USERS_DEFAULT_THEME: light
       GF_SECURITY_ALLOW_EMBEDDING: true
+      GF_AUTH_ANONYMOUS_ORG_NAME: "Main Org."
+      GF_AUTH_DISABLE_LOGIN_FORM: true
+      GF_AUTH_DISABLE_SIGNOUT_MENU: true
+      GF_USERS_ALLOW_SIGN_UP: false
     networks:
       - damiotdevnet
     volumes:
