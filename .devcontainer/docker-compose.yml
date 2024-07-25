@@ -3,7 +3,7 @@ services:
     image: mcr.microsoft.com/devcontainers/base:ubuntu
     volumes:
       - ../..:/workspaces:cached
-    network_mode: service:portainer
+    #network_mode: service:portainer
     command: sleep infinity
   
   #portainer:
