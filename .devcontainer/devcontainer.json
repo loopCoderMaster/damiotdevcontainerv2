@@ -20,15 +20,14 @@
     "vscode": {
       "extensions": [
         "ms-azuretools.vscode-docker",
-        "grafana.grafana",
+        "Grafana.grafana-vscode",
         "ms-vscode-remote.remote-containers",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "node-red.node-red",
         "mongodb.mongodb-vscode",
         "mtxr.sqltools",
-        "mtxr.sqltools-driver-pg",
-        "wjsvec.vscode-tdengine"
+        "mtxr.sqltools-driver-pg" 
+        //"wjsvec.vscode-tdengine" Non funziona per bug
       ],
       "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",

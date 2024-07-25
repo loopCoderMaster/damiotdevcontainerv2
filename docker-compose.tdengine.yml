@@ -5,11 +5,12 @@ services:
     ports:
       - "6030-6042:6030-6042"
     environment:
+      TAOS_FQDN: tdengine
       #TDENGINE_ROOT_USER: root
       TDENGINE_ROOT_PASSWORD: pwddamdev
       TZ: UTC
     volumes:
-      - tdengine_data:/var/lib/taos
+      - tdengine-data:/var/lib/taos/
     networks:
       - damiotdevnet
     

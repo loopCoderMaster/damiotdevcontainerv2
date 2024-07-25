@@ -23,6 +23,10 @@ services:
       GF_AUTH_DISABLE_LOGIN_FORM: true
       GF_AUTH_DISABLE_SIGNOUT_MENU: true
       GF_USERS_ALLOW_SIGN_UP: false
+      GF_INSTALL_PLUGINS: "tdengine-datasource,grafana-clock-panel,grafana-worldmap-panel,natel-plotly-panel"
+      TDENGINE_URL: "http://tdengine:6041"
+      #printf "$TDENGINE_USER:$TDENGINE_PASSWORD" | base64
+      TDENGINE_BASIC_AUTH: "cm9vdDp0YmFzZTEyNQ=="
     networks:
       - damiotdevnet
     volumes:
@@ -39,6 +43,7 @@ services:
   natsbox:
     image: natsio/nats-box:latest
     network_mode: service:nats
+    entrypoint: ["tail", "-f", "/dev/null"]
     depends_on:
       - nats
 
@@ -78,9 +83,24 @@ services:
     networks:
       - damiotdevnet
 
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - portainernet
+
 volumes:
   grafana_data:
+  portainer_data:
 
 networks:
   damiotdevnet:
+    driver: bridge
+  portainernet:
     driver: bridge
