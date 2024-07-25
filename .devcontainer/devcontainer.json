@@ -32,35 +32,97 @@
       ],
       "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
-        "sqltools.connections": [{
-              "name": "TimescaleDbInstance",
-              "server": "",
-              "driver": "",
-              "port": 3306,
-              "username": "root",
-              "askForPassword": false,
-              "password": "",
-              "connectionTimeout": 15,
-              "mysqlOptions": {
-                  "authProtocol": "default"
-              }
-         }]
+        "sqltools.connections": [
+          {
+            "name": "TimescaleDbInstance",
+            "server": "",
+            "driver": "",
+            "port": 3306,
+            "username": "root",
+            "askForPassword": false,
+            "password": "",
+            "connectionTimeout": 15,
+            "mysqlOptions": {
+              "authProtocol": "default"
+            }
+          }
+        ]
       }
     },
     "codespaces": {
       "openFiles": [
         "README.md"
       ]
-  }
+    }
   },
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "shutdownAction": "stopCompose",
   "postCreateCommand": "docker docker-compose up -d",
+  "forwardPorts": [
+    3000,
+    4222,
+    27017,
+    1880,
+    5678,
+    9081,
+    9000,
+    9443,
+    6030,
+    6031,
+    6032,
+    6033,
+    6034,
+    6035,
+    6036,
+    6037,
+    6038,
+    6039,
+    6040,
+    6041,
+    6042
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Grafana",
+      "onAutoForward": "openBrowser"
+    },
+    "4222": {
+      "label": "NATS",
+      "onAutoForward": "notify"
+    },
+    "27017": {
+      "label": "MongoDB",
+      "onAutoForward": "notify"
+    },
+    "1880": {
+      "label": "Node-RED",
+      "onAutoForward": "openBrowser"
+    },
+    "5678": {
+      "label": "n8n",
+      "onAutoForward": "openBrowser"
+    },
+    "9081": {
+      "label": "eKuiper",
+      "onAutoForward": "openBrowser"
+    },
+    "9000": {
+      "label": "Portainer",
+      "onAutoForward": "openBrowser"
+    },
+    "9443": {
+      "label": "Portainer https",
+      "onAutoForward": "openBrowser"
+    },
+    "6030-6042": {
+      "label": "TDengine"
+    }
+  },
   "hostRequirements": {
-   "cpus": 2,
-   "memory": "8gb",
-   "storage": "32gb"
-}
+    "cpus": 2,
+    "memory": "8gb",
+    "storage": "32gb"
+  }
 }

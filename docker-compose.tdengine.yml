@@ -1,0 +1,17 @@
+services:
+  tdengine:
+    image: tdengine/tdengine:latest
+    restart: unless-stopped
+    ports:
+      - "6030-6042:6030-6042"
+    environment:
+      #TDENGINE_ROOT_USER: root
+      TDENGINE_ROOT_PASSWORD: pwddamdev
+      TZ: UTC
+    volumes:
+      - tdengine_data:/var/lib/taos
+    networks:
+      - damiotdevnet
+    
+  volumes:
+    tdengine_data:

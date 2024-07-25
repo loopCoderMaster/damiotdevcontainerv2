@@ -1,0 +1,44 @@
+services:
+  ekuiper:
+    image: lfedge/ekuiper:latest
+    container_name: ekuiper
+    restart: always
+    user: root
+    ports:
+      - "9081:9081" 
+    networks:
+      - damiotdevnet
+    volumes:
+      - ekuiper_data:/kuiper/data
+      - ekuiper_etc:/kuiper/etc
+      - ekuiper_connections:/kuiper/etc/connections
+      - ekuiper_sources:/kuiper/etc/sources
+      - ekuiper_plugins:/kuiper/plugins
+      - ekuiper_log:/kuiper/log
+    environment:
+      #MQTT_SOURCE__DEFAULT__SERVER: ${MQTT_SOURCE__DEFAULT__SERVER} 
+      KUIPER__BASIC__CONSOLELOG: true
+      KUIPER__BASIC__IGNORECASE: true
+    depends_on:
+      - timescaledb  
+  
+  ekpmanager:
+    image: emqx/ekuiper-manager:latest
+    restart: on-failure
+    environment:
+      - DEFAULT_EKUIPER_ENDPOINT=http://ekuiper:9081
+    depends_on:
+      - ekuiper
+    networks:
+      - damiotdevnet
+    volumes:
+      - ekpmanager_data:/ekuiper-manager/data
+  
+  volumes:
+    ekuiper_data:
+    ekuiper_etc:
+    ekuiper_connections:
+    ekuiper_sources:
+    ekuiper_plugins:
+    ekuiper_log:
+    ekpmanager_data:

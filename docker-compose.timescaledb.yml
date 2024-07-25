@@ -1,0 +1,16 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: pwddamdev
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      TZ: UTC
+    networks:
+      - damiotdevnet
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data 
+    
+  volumes:
+    timescaledb_data:

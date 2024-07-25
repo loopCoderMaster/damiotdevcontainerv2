@@ -1,0 +1,82 @@
+name: damiotdev
+
+services:  
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: pwddamdev
+      GF_LOG_LEVEL: info
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_ANONYMOUS_ENABLED: true
+      GF_AUTH_BASIC_ENABLED: false
+      GF_ENABLE_GZIP: true
+      GF_USERS_DEFAULT_THEME: light
+      GF_SECURITY_ALLOW_EMBEDDING: true
+    networks:
+      - damiotdevnet
+    volumes:
+      - grafana_data:/var/lib/grafana 
+
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"
+    restart: unless-stopped
+    networks:
+      - damiotdevnet
+  
+  natsbox:
+    image: natsio/nats-box:latest
+    network_mode: service:nats
+    depends_on:
+      - nats
+    networks:
+      - damiotdevnet
+
+    netshoot:
+    image: nicolaka/netshoot:latest
+    stdin_open: true
+    tty: true
+    networks:
+      - damiotdevnet
+
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
+    networks:
+      - damiotdevnet
+
+  netdata:
+    image: netdata/netdata:latest
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor=unconfined
+    ports:
+      - "19999:19999"
+    volumes:
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - damiotdevnet
+
+  volumes:
+    grafana_data:
+
+  networks:
+    damiotdevnet:
+      driver: bridge
