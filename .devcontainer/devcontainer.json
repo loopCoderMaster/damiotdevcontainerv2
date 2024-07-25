@@ -119,6 +119,10 @@
       "label": "n8n",
       "onAutoForward": "openBrowser"
     },
+    "5432": {
+      "label": "timescaledb",
+      "onAutoForward": "notify"
+    },
     "9081": {
       "label": "eKuiper",
       "onAutoForward": "openBrowser"

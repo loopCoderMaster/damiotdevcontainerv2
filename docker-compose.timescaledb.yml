@@ -2,6 +2,8 @@ services:
   timescaledb:
     image: timescale/timescaledb:latest-pg16
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: pwddamdev
       POSTGRES_USER: postgres

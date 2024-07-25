@@ -10,9 +10,9 @@ services:
       TDENGINE_ROOT_PASSWORD: pwddamdev
       TZ: UTC
     volumes:
-      - tdengine-data:/var/lib/taos/
+      - tdengine_data:/var/lib/taos/
     networks:
       - damiotdevnet
     
 volumes:
-  tdengine-data:
+  tdengine_data:
