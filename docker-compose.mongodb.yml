@@ -12,5 +12,5 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: pwddamdev
     
-  volumes:
-    mongodb_data:
+volumes:
+  mongodb_data:

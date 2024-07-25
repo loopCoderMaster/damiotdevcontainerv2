@@ -12,5 +12,5 @@ services:
     volumes:
       - timescaledb_data:/var/lib/postgresql/data 
     
-  volumes:
-    timescaledb_data:
+volumes:
+  timescaledb_data:

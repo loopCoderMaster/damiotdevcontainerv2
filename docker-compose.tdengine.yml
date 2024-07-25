@@ -13,5 +13,5 @@ services:
     networks:
       - damiotdevnet
     
-  volumes:
-    tdengine_data:
+volumes:
+  tdengine_data:

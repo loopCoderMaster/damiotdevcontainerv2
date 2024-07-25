@@ -1,7 +1,6 @@
 services:
   ekuiper:
     image: lfedge/ekuiper:latest
-    container_name: ekuiper
     restart: always
     user: root
     ports:
@@ -34,11 +33,11 @@ services:
     volumes:
       - ekpmanager_data:/ekuiper-manager/data
   
-  volumes:
-    ekuiper_data:
-    ekuiper_etc:
-    ekuiper_connections:
-    ekuiper_sources:
-    ekuiper_plugins:
-    ekuiper_log:
-    ekpmanager_data:
+volumes:
+  ekuiper_data:
+  ekuiper_etc:
+  ekuiper_connections:
+  ekuiper_sources:
+  ekuiper_plugins:
+  ekuiper_log:
+  ekpmanager_data:

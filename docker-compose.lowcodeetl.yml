@@ -29,6 +29,6 @@ services:
     networks:
       - damiotdevnet
     
-  volumes:
-    node-red-data:
-    n8n_data: 
+volumes:
+  node-red-data:
+  n8n_data: 
