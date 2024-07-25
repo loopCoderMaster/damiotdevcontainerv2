@@ -61,6 +61,7 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+    entrypoint: ["tail", "-f", "/dev/null"]
     ports:
       - "8080:8080"
     networks:
@@ -88,7 +89,6 @@ services:
     restart: unless-stopped
     ports:
       - "9000:9000"
-      - "9443:9443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data

@@ -127,10 +127,6 @@
       "label": "Portainer",
       "onAutoForward": "openBrowser"
     },
-    "9443": {
-      "label": "Portainer https",
-      "onAutoForward": "openBrowser"
-    },
     "6030-6042": {
       "label": "TDengine"
     }
