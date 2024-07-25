@@ -46,11 +46,21 @@
               }
          }]
       }
-    }
+    },
+    "codespaces": {
+      "openFiles": [
+        "README.md"
+      ]
+  }
   },
   "dockerComposeFile": "docker-compose.yml",
   "service": "devcontainer",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "shutdownAction": "stopCompose",
-  "postCreateCommand": "docker docker-compose up -d"
+  "postCreateCommand": "docker docker-compose up -d",
+  "hostRequirements": {
+   "cpus": 2,
+   "memory": "8gb",
+   "storage": "32gb"
+}
 }
