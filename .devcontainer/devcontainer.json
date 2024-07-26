@@ -34,20 +34,19 @@
         "sqltools.connections": [
           {
             "name": "TimescaleDB",
-            "server": "timescaledb",
+            "server": "localhost",
             "driver": "PostgreSQL",
             "port": 5432,
             "username": "postgres",
             "password": "pwddamdev",
-            "database": "postgres"
+            "database": "postgres",
+            "previewLimit": 50
           }
         ],
         "mongodb.connections": [
           {
             "name": "MongoDB",
-            "host": "mongodb",
-            "port": 27017,
-            "connectionString": "mongodb://admin:pwddamdev@mongodb:27017",
+            "connectionString": "mongodb://admin:pwddamdev@localhost:27017/",
             "authenticationDatabase": "admin"
           }
         ],
